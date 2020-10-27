@@ -1,0 +1,6 @@
+module Pods_lastFmProject_lastFmProjectTests {
+  umbrella header "Pods-lastFmProject-lastFmProjectTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
