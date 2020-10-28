@@ -27,4 +27,16 @@ export const requests = {
       console.log('error', error);
     }
   },
+
+  trackSearch: async (trackTittle: string) => {
+    try {
+      const data = await axios({
+        url: `${BASE_URL}/?method=track.search&track=${trackTittle}&api_key=${API_KEY}&format=json`,
+        method: 'get',
+      });
+      return data;
+    } catch (error) {
+      console.log('error', error);
+    }
+  },
 };

@@ -1,4 +1,3 @@
-import { createConfigItem } from '@babel/core';
 import { LOAD_ARTIST_INFO } from '../actions/artistInfoActions';
 
 export const artist = (state = {}, action: IAction) => {
