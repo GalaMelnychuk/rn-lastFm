@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { HomeScreen } from '../screens/HomeScreen';
 import { SearchScreen } from '../screens/SearchScreen';
 import { ArtistDetailsScreen } from '../screens/ArtistDetailsScreen';
+import { Arrow } from '../components/Arrow';
 
 const Stack = createStackNavigator();
 
@@ -12,7 +13,7 @@ export const content = (
   <NavigationContainer>
     <Stack.Navigator>
       <Stack.Screen
-        options={{
+        options={({ navigation }) => ({
           title: 'Popular Tracks',
           headerStyle: {
             shadowColor: '#000',
@@ -24,7 +25,11 @@ export const content = (
             shadowRadius: 3.84,
             elevation: 5,
           },
-        }}
+          headerTitleStyle: {
+            fontSize: 24,
+          },
+          headerRight: () => <Arrow navigation={navigation} />,
+        })}
         name='Home'
         component={HomeScreen}
       />

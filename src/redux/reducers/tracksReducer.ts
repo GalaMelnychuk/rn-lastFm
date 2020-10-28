@@ -1,16 +1,19 @@
 import { LOAD_TRACKS } from '../actions/popularTracksActions';
 
-const initialState = [{ trackName: '', artist: '', img: '', url: '' }];
-
 interface IAction {
   type: string;
   payload: [];
 }
 
-export const tracks = (state = initialState, action: IAction) => {
+export const tracks = (state = [], action: IAction) => {
   switch (action.type) {
     case LOAD_TRACKS:
-      return action.payload;
+      return action.payload.map((elem) => ({
+        trackName: elem.name,
+        artist: elem.artist.name,
+        img: Object.values(elem.image[0])[0],
+        url: elem.url,
+      }));
     default:
       return state;
   }

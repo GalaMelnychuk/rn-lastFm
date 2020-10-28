@@ -15,4 +15,16 @@ export const requests = {
       console.log('error', error);
     }
   },
+
+  getArtistInfo: async (artistName: string) => {
+    try {
+      const data = await axios({
+        url: `${BASE_URL}/?method=artist.getinfo&artist=${artistName}&api_key=${API_KEY}&format=json`,
+        method: 'get',
+      });
+      return data;
+    } catch (error) {
+      console.log('error', error);
+    }
+  },
 };
