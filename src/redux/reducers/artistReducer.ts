@@ -1,5 +1,10 @@
 import { LOAD_ARTIST_INFO } from '../actions/artistInfoActions';
 
+interface IAction {
+  type: string;
+  payload: any;
+}
+
 export const artist = (state = {}, action: IAction) => {
   switch (action.type) {
     case LOAD_ARTIST_INFO:

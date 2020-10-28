@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { Text, Image, StyleSheet, TouchableHighlight } from 'react-native';
 import { getArtistInfo } from '../redux/actions/artistInfoActions';
 
-export const Track = ({ item }) => {
+export const Track = ({ item }: any) => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -15,6 +15,7 @@ export const Track = ({ item }) => {
   const showArtist = (artist: string) => {
     dispatch(getArtistInfo(artist, goToArtistScreen));
   };
+
   return (
     <>
       <Text>{item.trackName}</Text>
@@ -26,7 +27,7 @@ export const Track = ({ item }) => {
       </TouchableHighlight>
       {item.img && (
         <Image
-          style={{ width: 30, height: 30 }}
+          style={styles.img}
           source={{
             uri: item?.img,
           }}
@@ -38,4 +39,5 @@ export const Track = ({ item }) => {
 
 const styles = StyleSheet.create({
   artist: { fontSize: 18, fontWeight: '700' },
+  img: { width: 30, height: 30 }
 });

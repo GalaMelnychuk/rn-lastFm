@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
-import { Text, SafeAreaView, FlatList } from 'react-native';
+import { SafeAreaView, FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { getPopularTracksAction } from '../redux/actions/popularTracksActions';
-import { requests } from '../services/requests';
 import { Track } from '../components/Track';
+import { RootState } from '../redux/reducers/rootReducer';
 
 export const HomeScreen = () => {
-  const tracks = useSelector((state) => state.tracks);
+  const tracks = useSelector((state: RootState) => state.tracks);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,7 +18,7 @@ export const HomeScreen = () => {
       <FlatList
         data={tracks}
         renderItem={({ item }) => <Track item={item} />}
-        keyExtractor={(item) => item.trackName}
+        keyExtractor={(item: any) => item.trackName}
       />
     </SafeAreaView>
   );

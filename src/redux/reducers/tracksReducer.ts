@@ -8,7 +8,7 @@ interface IAction {
 export const tracks = (state = [], action: IAction) => {
   switch (action.type) {
     case LOAD_TRACKS:
-      return action.payload.map((elem) => ({
+      return action.payload.map((elem: any) => ({
         trackName: elem.name,
         artist: elem.artist.name,
         img: Object.values(elem.image[0])[0],
