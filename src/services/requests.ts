@@ -29,7 +29,6 @@ export const requests = {
   },
 
   trackSearch: async (trackTittle: string) => {
-    console.log('trackTittle!!!!', trackTittle);
     try {
       const data = await axios({
         url: `${BASE_URL}/?method=track.search&track=${trackTittle}&api_key=${API_KEY}&format=json`,

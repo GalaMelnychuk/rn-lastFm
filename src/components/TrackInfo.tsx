@@ -10,8 +10,8 @@ interface IProps {
 export const TrackInfo = ({ item }: any) => {
     return (
         <>
-            <Text style={styles.name}>{item.name}</Text>
-            <Text style={styles.artist}>{item.artist}</Text>
+            <Text style={styles.name}> {item.name}</Text>
+            <Text style={styles.artist}> ARTIST: {item.artist}</Text>
         </>
     );
 };

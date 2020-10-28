@@ -6,7 +6,6 @@ function* searchTrackSagaWatcher(action: any) {
   const trackTittle = action.payload;
   try {
     const data = yield call(requests.trackSearch, trackTittle);
-    console.log('data', data);
     yield put(loadSearchingTracks(data.data.results.trackmatches.track));
   } catch (error) {
     console.log('error++', error);

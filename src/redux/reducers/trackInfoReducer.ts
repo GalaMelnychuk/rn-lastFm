@@ -9,7 +9,11 @@ interface IAction {
 export const trackInfo = (state = [], action: IAction) => {
   switch (action.type) {
     case LOAD_SEARCHING_TRACKS:
-      return action.payload.map((elem: any) => ({ name: elem.name, artist: elem.artist }));
+      return action.payload.map((elem: any) => ({
+        name: elem.name,
+        artist: elem.artist,
+        id: Math.random().toString(),
+      }));
     case CLEAN_ARTIST_INFO:
       return [];
     default:

@@ -25,7 +25,7 @@ export const Track = ({ item }: any) => {
         onPress={() => showArtist(item.artist)}>
         <Text style={styles.artist}>{item.artist}</Text>
       </TouchableHighlight>
-      {item.img && (
+      {item?.img && (
         <Image
           style={styles.img}
           source={{
