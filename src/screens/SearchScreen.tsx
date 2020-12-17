@@ -8,6 +8,7 @@ import { RootState } from "../redux/reducers/rootReducer"
 
 export const SearchScreen = () => {
   const [track, setTrack] = useState('');
+  const [counter, setCounter] = useState(10);
   const info = useSelector((state: RootState) => state.trackInfo);
   const dispatch = useDispatch();
 
@@ -17,7 +18,28 @@ export const SearchScreen = () => {
     };
   }, []);
 
-  const onSearchTrack = (text: string) => {
+  const formatTime = (time:number) => {
+    return String(time).length === 1 ? `0${time}` : `${time}`;
+  };
+  
+  const convertTime = (time: number) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+  
+    return `${formatTime(minutes)}:${formatTime(seconds)}`;
+  }
+ 
+  useEffect(() => {
+    let timerId: any;
+    if (counter > 0) {
+      timerId = setTimeout(() => setCounter((prevValue) => prevValue - 1), 1000);
+    }
+    return () => {
+        clearTimeout(timerId);
+    };
+  }, [counter]);
+
+  const onSearchTrack = (text: string, ) => {
     if (text.trim()) {
       dispatch(searchTracks(text));
       setTrack("")
@@ -26,7 +48,7 @@ export const SearchScreen = () => {
         "Please, enter a track title",
         "",
         [
-          { text: "OK", onPress: () => console.log("OK Pressed") }
+          { text: "OK", onPress: () => clearTimeout(timerId) }
         ],
         { cancelable: false }
       );
@@ -49,6 +71,9 @@ export const SearchScreen = () => {
           <Text style={styles.textBtn}>SEARCH</Text>
         </TouchableOpacity>
       </View>
+      <Text style={styles.time}>
+      {convertTime(counter)}
+    </Text>
 
       {info.length ?
         <View style={styles.listCont}>
@@ -71,5 +96,14 @@ const styles = StyleSheet.create({
   btn: { backgroundColor: "#43b1f4", width: "100%", padding: 10, borderColor: "black", borderWidth: 1, borderRadius: 8, alignItems: "center", justifyContent: "center" },
   input: { height: 50, borderColor: 'gray', borderWidth: 1, marginTop: 40, padding: 10, borderRadius: 8 },
   textBtn: { color: "#000", fontWeight: "700" },
-  listCont: { height: "70%" }
+  listCont: { height: "70%" },
+    time: {
+      fontSize: 13,
+      fontWeight: '600',
+  
+      lineHeight: 19,
+      marginLeft: 3,
+      color: "blue",
+    },
+
 });
